@@ -79,6 +79,8 @@ public class DadosCPU {
         try{
             jdbcTemplate.update("INSERT INTO tblInfoCPU values (?, ?, ?, ?, ?, ?)", this.cpuName, this.user, this.system, this.totalUsadoCPU, this.idMaquina, this.dataHora);
             
+            Notificacao.notificacaoCPU(this.totalUsadoCPU, this.idMaquina);
+            
             GerarLog.escreverLog("Dados de CPU inseridos com sucesso!", "B");
         }
         catch (Exception e){

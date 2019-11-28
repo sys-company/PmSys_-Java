@@ -36,6 +36,7 @@ public class DadosProcessos {
     private String tempoDeUso;
     private Date dataCapturada;
     private int idMaquina;
+    private long horas;
     
     public DadosProcessos(int i){
         this.idMaquina = i;
@@ -91,8 +92,8 @@ public class DadosProcessos {
                     this.nomeProcesso = p.getName();
 
                     long minutos = (p.getUpTime() / 60000) % 60;
-                    long horas = (p.getUpTime() / 3600000);
-                    String upTime = String.format("%3d:%02d", horas, minutos);
+                    this.horas = (p.getUpTime() / 3600000);
+                    String upTime = String.format("%3d:%02d", this.horas, minutos);
 
                     this.tempoDeUso = upTime;
                     this.dataCapturada = new Date();
@@ -117,6 +118,8 @@ public class DadosProcessos {
         
         try{
             jdbcTemplate.update("INSERT INTO tblInfoProcessos values (?, ?, ?, ?)", this.nomeProcesso, this.tempoDeUso, this.dataCapturada, this.idMaquina);
+            
+            Notificacao.notificacaoProcesso(this.horas, this.nomeProcesso, this.idMaquina);
             
             GerarLog.escreverLog("Dados de processos inseridos com sucesso!", "B");
         }catch (Exception e){
