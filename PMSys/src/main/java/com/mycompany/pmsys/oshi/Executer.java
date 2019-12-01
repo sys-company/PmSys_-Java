@@ -25,7 +25,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class Executer {
 
-    private static int idFuncionario = 1000;
+    private static int idFuncionario = 1004;
     private static int lastID;
 
     public static void main(String[] args) throws Exception {
@@ -67,9 +67,9 @@ public class Executer {
                 lastID = Integer.parseInt(row.get("idStatusFuncionario").toString());
             }
 
-            GerarLog.escreverLog("Dados de status logado inseridos", "B");
+            GerarLog.escreverLog("Dados de status logado inseridos", "B", 0);
         } catch (Exception e) {
-            GerarLog.escreverLog("Erro ao inserir dados de logon: " + e.getMessage(), "B");
+            GerarLog.escreverLog("Erro ao inserir dados de logon: " + e.getMessage(), "B", 0);
         }
     }
     private static void deslogou() {
@@ -79,9 +79,9 @@ public class Executer {
         try {
             jdbcTemplate.update("UPDATE tblStatusFuncionario SET horaSaiu = ? where idStatusFuncionario = ?", new Date(), lastID);
 
-            GerarLog.escreverLog("Usuário deslogou inseridos", "B");
+            GerarLog.escreverLog("Usuário deslogou inseridos", "B", 0);
         } catch (Exception e) {
-            GerarLog.escreverLog("Erro ao inserir dados de deslog: " + e.getMessage(), "B");
+            GerarLog.escreverLog("Erro ao inserir dados de deslog: " + e.getMessage(), "B", 0);
         }
     }
 }

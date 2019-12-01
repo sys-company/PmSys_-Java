@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.mycompany.pmsys;
 
-import com.mycompany.pmsys.ConnectURL;
-import com.mycompany.pmsys.DadosProcessos;
-import com.mycompany.pmsys.oshi.OshiDados;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -58,7 +51,7 @@ public class TelaMonitoramento extends javax.swing.JFrame {
         
         buscaFuncionarios();
         
-        GerarLog.escreverLog("Tela de monitoramento do squad do gerente " + nomeGerente + " foi aberta", "A");
+        GerarLog.escreverLog("Tela de monitoramento do squad do gerente " + nomeGerente + " foi aberta", "A", 0);
         //atualizarFuncionarios();
 
     }    
@@ -125,6 +118,7 @@ public class TelaMonitoramento extends javax.swing.JFrame {
             lbRAMStatus.setBounds(255, 50, 200, 20);
             String ramAntes = ram.getTotalRamUsado().toString();
             String statusRamUsada = ramAntes.substring(0, 3);
+            System.out.println(ramAntes + " blabalabl");
             JLabel lbRAM = new JLabel(statusRamUsada + " GB");
             lbRAM.setBounds(265, 70, 200, 50);
             lbRAM.setFont(statusFontHD);
@@ -357,7 +351,7 @@ public class TelaMonitoramento extends javax.swing.JFrame {
 
     private void lbSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSairMouseClicked
         
-        GerarLog.escreverLog("Tela de monitoramento do squad do gerente " + nomeGerente + " foi fechada", "A");
+        GerarLog.escreverLog("Tela de monitoramento do squad do gerente " + nomeGerente + " foi fechada", "A", 0);
         
         dispose();
         TelaLogin inicio = new TelaLogin();

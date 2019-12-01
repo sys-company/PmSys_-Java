@@ -260,18 +260,18 @@ public class TelaLogin extends javax.swing.JFrame {
 
                             buscaGerente(fkConta);
                             
-                            GerarLog.escreverLog("Usuário logado!", "A");
+                            GerarLog.escreverLog("Usuário logado!", "A", 0);
                             
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
-                    GerarLog.escreverLog("Usuário ou senha inválidos!", "A");
+                    GerarLog.escreverLog("Usuário ou senha inválidos!", "A", 0);
                 }       
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro do Sql \n" + e, "Erro", JOptionPane.ERROR_MESSAGE);
-            GerarLog.escreverLog("Erro ao acessar o banco de dados: " + e.getMessage(), "A");
+            GerarLog.escreverLog("Erro ao acessar o banco de dados: " + e.getMessage(), "A", 0);
         }
 
 

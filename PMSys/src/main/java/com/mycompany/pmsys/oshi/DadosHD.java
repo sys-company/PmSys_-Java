@@ -61,10 +61,10 @@ public class DadosHD {
             
             Notificacao.notificacaoHD(this.espacoTotal, this.espacoUsavel, idMaquina);
             
-            GerarLog.escreverLog("Dados de CPU inseridos com sucesso!", "B");
+            GerarLog.escreverLog("Dados de CPU inseridos com sucesso!", "B", idMaquina);
         }
         catch (Exception e){
-            GerarLog.escreverLog("Erro ao inserir Dados do HD: " + e.getMessage(), "B");
+            GerarLog.escreverLog("Erro ao inserir Dados do HD: " + e.getMessage(), "B", idMaquina);
         }
 
     }

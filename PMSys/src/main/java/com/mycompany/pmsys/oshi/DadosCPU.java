@@ -81,10 +81,10 @@ public class DadosCPU {
             
             Notificacao.notificacaoCPU(this.totalUsadoCPU, this.idMaquina);
             
-            GerarLog.escreverLog("Dados de CPU inseridos com sucesso!", "B");
+            GerarLog.escreverLog("Dados de CPU inseridos com sucesso!", "B", idMaquina);
         }
         catch (Exception e){
-            GerarLog.escreverLog("Erro ao inserir Dados da CPU: " + e.getMessage(), "B");
+            GerarLog.escreverLog("Erro ao inserir Dados da CPU: " + e.getMessage(), "B", idMaquina);
         }
 //      
     }   

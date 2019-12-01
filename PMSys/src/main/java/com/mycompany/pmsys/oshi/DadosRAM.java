@@ -57,14 +57,14 @@ public class DadosRAM {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dadosConexao.getDataSource());
        
         try{
-            jdbcTemplate.update("INSERT INTO tblInfoRAM values (?, ?, ?, ?)", this.totalRamUsado, this.totalDisponivel, 1001, this.dataHora);
+            jdbcTemplate.update("INSERT INTO tblInfoRAM values (?, ?, ?, ?)", this.totalRamUsado, this.totalDisponivel, idMaquina, this.dataHora);
             
             Notificacao.notificacaoRAM(this.totalDisponivel, this.totalRamUsado, this.idMaquina);
             
-            GerarLog.escreverLog("Dados de CPU inseridos com sucesso!", "B");
+            GerarLog.escreverLog("Dados de CPU inseridos com sucesso!", "B", idMaquina);
         }
         catch (Exception e){
-            GerarLog.escreverLog("Erro ao inserir Dados da RAM: " + e.getMessage(), "B");
+            GerarLog.escreverLog("Erro ao inserir Dados da RAM: " + e.getMessage(), "B", idMaquina);
     
         }
     

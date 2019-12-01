@@ -105,9 +105,9 @@ public class DadosProcessos {
             }
             
         } catch (FileNotFoundException e) {
-            GerarLog.escreverLog("Erro ao encontrar arquivo de ignore dos processos: " + e.getMessage(), "B");
+            GerarLog.escreverLog("Erro ao encontrar arquivo de ignore dos processos: " + e.getMessage(), "B", idMaquina);
         } catch(IOException e){
-            GerarLog.escreverLog("Erro ao ler arquivo de ignore dos processos: " + e.getMessage(), "B");
+            GerarLog.escreverLog("Erro ao ler arquivo de ignore dos processos: " + e.getMessage(), "B", idMaquina);
         }
     }
     
@@ -121,9 +121,9 @@ public class DadosProcessos {
             
             Notificacao.notificacaoProcesso(this.horas, this.nomeProcesso, this.idMaquina);
             
-            GerarLog.escreverLog("Dados de processos inseridos com sucesso!", "B");
+            GerarLog.escreverLog("Dados de processos inseridos com sucesso!", "B", idMaquina);
         }catch (Exception e){
-            GerarLog.escreverLog("Erro ao inserir Dados dos Processos: " + e.getMessage(), "B");
+            GerarLog.escreverLog("Erro ao inserir Dados dos Processos: " + e.getMessage(), "B", idMaquina);
         }
         
     }

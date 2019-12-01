@@ -38,7 +38,7 @@ public class Slack {
             post.close();
             
             if (connection.getResponseCode()==200) {
-                GerarLog.escreverLog("Foi enviada a mensagem: '" + mensagem + "' para o colaborador: " + colaborador, "A");
+                GerarLog.escreverLog("Foi enviada a mensagem: '" + mensagem + "' para o colaborador: " + colaborador, "A", 0);
                 return true;
             }
             
@@ -47,7 +47,7 @@ public class Slack {
         }
         catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Erro ao enviar mensagem para o slack: " + e.getMessage());
-            GerarLog.escreverLog("Erro ao enviar mensagem para o slack: " + e.getMessage(), "A");
+            GerarLog.escreverLog("Erro ao enviar mensagem para o slack: " + e.getMessage(), "A", 0);
         }
         
         return false;

@@ -15,11 +15,11 @@ public class TeamViewer {
         try {
             Runtime.getRuntime().exec("C:\\Program Files (x86)\\TeamViewer\\TeamViewer.exe");
             
-            GerarLog.escreverLog("Usuário abriu TeamViewer", "A");
+            GerarLog.escreverLog("Usuário abriu TeamViewer", "A", 0);
             
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Erro ao acessar o TemViewer: " + e.getMessage());
-            GerarLog.escreverLog("Erro ao acessar o TeamViewer: " + e.getMessage(), "A");
+            GerarLog.escreverLog("Erro ao acessar o TeamViewer: " + e.getMessage(), "A", 0);
         }
     }
 }

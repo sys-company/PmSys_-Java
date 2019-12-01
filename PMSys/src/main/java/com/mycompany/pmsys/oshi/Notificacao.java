@@ -27,9 +27,9 @@ public class Notificacao {
                 dataCapturada = new Date();
                 jdbcTemplate.update("INSERT INTO tblNotificacao values (?, ?, "+ queryIdFuncionario + ", ?, " + queryIdSquad + ")", mensagem, dataCapturada, 3);
                 
-                GerarLog.escreverLog(mensagem, "B");
+                GerarLog.escreverLog(mensagem, "B", idMaquina);
             }catch(Exception ex){
-                GerarLog.escreverLog("Erro ao gerar notificação da CPU", "B");
+                GerarLog.escreverLog("Erro ao gerar notificação da CPU", "B", idMaquina);
             }
         }
         
@@ -50,9 +50,9 @@ public class Notificacao {
                 dataCapturada = new Date();
                 jdbcTemplate.update("INSERT INTO tblNotificacao values (?, ?, "+ queryIdFuncionario + ", ?, " + queryIdSquad + ")", mensagem, dataCapturada, 3);
 
-                GerarLog.escreverLog(mensagem, "B");
+                GerarLog.escreverLog(mensagem, "B", idMaquina);
             }catch(Exception ex){
-                GerarLog.escreverLog("Erro ao gerar notificação da CPU", "B");
+                GerarLog.escreverLog("Erro ao gerar notificação da CPU", "B", idMaquina);
             }
         }
     }
@@ -71,9 +71,9 @@ public class Notificacao {
                 dataCapturada = new Date();
                 jdbcTemplate.update("INSERT INTO tblNotificacao values (?, ?, "+ queryIdFuncionario + ", ?, " + queryIdSquad + ")", mensagem, dataCapturada, 3);
 
-                GerarLog.escreverLog(mensagem, "B");
+                GerarLog.escreverLog(mensagem, "B", idMaquina);
             }catch(Exception ex){
-                GerarLog.escreverLog("Erro ao gerar notificação da CPU", "B");
+                GerarLog.escreverLog("Erro ao gerar notificação da CPU", "B", idMaquina);
             }
         }
     }
@@ -88,9 +88,9 @@ public class Notificacao {
                 dataCapturada = new Date();
                 jdbcTemplate.update("INSERT INTO tblNotificacao values (?, ?, "+ queryIdFuncionario + ", ?, " + queryIdSquad + ")", mensagem, dataCapturada, 3);
 
-                GerarLog.escreverLog(mensagem, "B");
+                GerarLog.escreverLog(mensagem, "B", idMaquina);
             }catch(Exception ex){
-                GerarLog.escreverLog("Erro ao gerar notificação da CPU", "B");
+                GerarLog.escreverLog("Erro ao gerar notificação da CPU", "B", idMaquina);
             }
         }
     }

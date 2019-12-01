@@ -21,27 +21,27 @@ public class OshiDados implements Job{
 
 
     public void execute(JobExecutionContext args0) throws JobExecutionException {
-
-        DadosCPU dCpu = new DadosCPU(1000);
-        DadosRAM dRam = new DadosRAM(1000);
-        DadosHD dHd = new DadosHD(1000);
-        DadosProcessos dProcessos = new DadosProcessos(1000);
+        Integer idMaquina = 1004;
+        DadosCPU dCpu = new DadosCPU(idMaquina);
+        DadosRAM dRam = new DadosRAM(idMaquina);
+        DadosHD dHd = new DadosHD(idMaquina);
+        DadosProcessos dProcessos = new DadosProcessos(idMaquina);
         
         try{
-        GerarLog.escreverLog("Inserindo dados de CPU...", "B");
+        GerarLog.escreverLog("Inserindo dados de CPU...", "B", idMaquina);
             System.out.println("Inserindo dados de CPU...");
         dCpu.insereDadosCPU();
-        GerarLog.escreverLog("Inserindo dados de RAM...", "B");
+        GerarLog.escreverLog("Inserindo dados de RAM...", "B", idMaquina);
             System.out.println("Inserindo dados de RAM...");
         dRam.insereDadosRam();
-        GerarLog.escreverLog("Inserindo dadosde HD...", "B");
+        GerarLog.escreverLog("Inserindo dadosde HD...", "B", idMaquina);
             System.out.println("Inserindo dadosde HD...");
         dHd.insereDadosHD();
-        GerarLog.escreverLog("Enviando processos...", "B");
+        GerarLog.escreverLog("Enviando processos...", "B", idMaquina);
             System.out.println("Enviando processos...");
         dProcessos.processosAtuais();
         }catch(Exception e){
-            GerarLog.escreverLog("Erro ao inserir dados : " +e, "B");
+            GerarLog.escreverLog("Erro ao inserir dados : " +e, "B", idMaquina);
         }
 
     }

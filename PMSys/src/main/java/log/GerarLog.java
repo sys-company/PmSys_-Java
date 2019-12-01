@@ -1,6 +1,7 @@
 
 package log;
 
+import com.mycompany.pmsys.ConnectURL;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -9,6 +10,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -35,7 +37,7 @@ public class GerarLog {
         
     }
     
-    public static void escreverLog(String mensagem, String opcao){
+    public static void escreverLog(String mensagem, String opcao, Integer idMaquina){
         try{
             File arquivo = new File("");
             
@@ -56,6 +58,8 @@ public class GerarLog {
             
             verificaExistencia(arquivo);
             
+            insereBanco(mensagem, idMaquina, dataLog);
+            
             FileWriter fw = new FileWriter(arquivo, true);
             BufferedWriter writer = new BufferedWriter(fw);
             
@@ -69,6 +73,19 @@ public class GerarLog {
             JOptionPane.showMessageDialog(null, "Erro ao criar arquivo!\n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         
+    }
+    
+    private static void insereBanco(String mensagem, Integer idMaquina, String dataLog){
+        ConnectURL dadosConexao = new ConnectURL();
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dadosConexao.getDataSource());
+        
+        try{
+            jdbcTemplate.update("INSERT INTO tblOshiLogs values (?, ?, ?)", mensagem, dataLog, idMaquina);
+            
+        }
+        catch (Exception e){
+            
+        }
     }
     
 }
