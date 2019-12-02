@@ -1,4 +1,3 @@
-
 package com.mycompany.pmsys;
 
 import java.util.List;
@@ -33,7 +32,6 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
         btEntrarSys.requestFocus();
-        
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("img/rsz_11rsz_1rsz_logo.png"))); // NOI18N
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("img/rsz_profileicon.png"))); // NOI18N
@@ -150,6 +148,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Esqueci a senha");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
 
         btEntrarSys.setText("Entrar");
         btEntrarSys.addActionListener(new java.awt.event.ActionListener() {
@@ -215,11 +218,11 @@ public class TelaLogin extends javax.swing.JFrame {
         for (Map row : gerente) {
             this.idGerente = Integer.parseInt(row.get("idFuncionario").toString());
             this.nomeGerente = row.get("nomeFuncionario").toString();
-            
+
             TelaMonitoramento tm = new TelaMonitoramento(nomeGerente);
             tm.setVisible(true);
             dispose();
-            
+
         }
     }
 
@@ -253,20 +256,20 @@ public class TelaLogin extends javax.swing.JFrame {
 
             } else {
                 List<Map<String, Object>> login = jdbcTemplate.queryForList("SELECT * from tblConta where login = ? and senha = ?", tfLogin.getText(), pfPassword.getText());
-                
-                if(!login.isEmpty()){
-                    for (Map row : login) {
-                            fkConta = Integer.parseInt(row.get("idConta").toString());
 
-                            buscaGerente(fkConta);
-                            
-                            GerarLog.escreverLog("Usuário logado!", "A", 0);
-                            
+                if (!login.isEmpty()) {
+                    for (Map row : login) {
+                        fkConta = Integer.parseInt(row.get("idConta").toString());
+
+                        buscaGerente(fkConta);
+
+                        GerarLog.escreverLog("Usuário logado!", "A", 0);
+
                     }
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
                     GerarLog.escreverLog("Usuário ou senha inválidos!", "A", 0);
-                }       
+                }
             }
 
         } catch (Exception e) {
@@ -298,6 +301,12 @@ public class TelaLogin extends javax.swing.JFrame {
     private void pfPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfPasswordKeyTyped
 
     }//GEN-LAST:event_pfPasswordKeyTyped
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        TelaSenha ts = new TelaSenha();
+        ts.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
      * @param args the command line arguments
