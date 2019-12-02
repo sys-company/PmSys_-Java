@@ -1,9 +1,11 @@
 com\mycompany\pmsys\DadosFuncionarios.class
 com\mycompany\pmsys\TelaLogin$6.class
 com\mycompany\pmsys\oshi\DadosCPU.class
+com\mycompany\pmsys\TelaSenha.class
 com\mycompany\pmsys\Email$1.class
 com\mycompany\pmsys\TelaSenha$1.class
 com\mycompany\pmsys\DadosHD.class
+com\mycompany\pmsys\oshi\Notificacao.class
 com\mycompany\pmsys\oshi\DadosHD.class
 com\mycompany\pmsys\TelaIndividual$3.class
 com\mycompany\pmsys\Slack.class
@@ -11,6 +13,7 @@ com\mycompany\pmsys\TelaLogin$9.class
 com\mycompany\pmsys\TelaIndividual.class
 com\mycompany\pmsys\TelaLogin$3.class
 com\mycompany\pmsys\DadosSquads.class
+com\mycompany\pmsys\Email.class
 com\mycompany\pmsys\oshi\DadosProcessos.class
 log\GerarLog.class
 com\mycompany\pmsys\TelaMensagem$2.class
