@@ -39,14 +39,14 @@ public class TelaIndividual extends javax.swing.JFrame {
     Format formaterHoras = new SimpleDateFormat("HH:mm:ss");
     JLabel lbHoraxtracao;
 
-    public TelaIndividual(String nomeGerente, DadosFuncionarios func) {
+    public TelaIndividual(String nomeGerente, DadosFuncionarios func, String apelidoSquad) {
         initComponents();
 
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width / 2 - getWidth() /2, size.height / 2 - getHeight() /2);
         
-        DadosSquads dadosSquads = new DadosSquads(1);
+        DadosSquads dadosSquads = new DadosSquads(apelidoSquad);
 
         lbUsuario.setText(nomeGerente);
         lbArea.setText(dadosSquads.getAreaSquad());

@@ -197,7 +197,7 @@ public class TelaMonitoramento extends javax.swing.JFrame {
             btnTempoReal.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    TelaIndividual ti = new TelaIndividual(nomeGerente, func);
+                    TelaIndividual ti = new TelaIndividual(nomeGerente, func, apelidoSquad);
                     ti.setVisible(true);
                 }
             });
