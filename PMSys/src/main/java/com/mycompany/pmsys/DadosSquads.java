@@ -19,14 +19,14 @@ public class DadosSquads {
     private final ConnectURL dadosConexao = new ConnectURL();
     private final JdbcTemplate jdbcTemplate = new JdbcTemplate(dadosConexao.getDataSource());
 
-    public DadosSquads(Integer squad) {
+    public DadosSquads(String squad) {
         
-        List<Map<String, Object>> selectSquad = jdbcTemplate.queryForList("select * from tblSquad where idSquad = ?", squad);
+        List<Map<String, Object>> selectSquad = jdbcTemplate.queryForList("select * from tblSquad where apelidoSquad = ?", squad);
         //System.out.println(selectFuncionario);
 
         for(Map row : selectSquad){
             idSquad = Integer.valueOf(row.get("idSquad").toString());
-            apelidoSquad = row.get("apelidoSquad").toString();
+            apelidoSquad = squad;
             areaSquad = row.get("areaSquad").toString();
             fkConta = row.get("fkConta").toString();
         }

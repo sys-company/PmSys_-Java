@@ -219,8 +219,8 @@ public class TelaLogin extends javax.swing.JFrame {
             this.idGerente = Integer.parseInt(row.get("idFuncionario").toString());
             this.nomeGerente = row.get("nomeFuncionario").toString();
 
-            TelaMonitoramento tm = new TelaMonitoramento(nomeGerente);
-            tm.setVisible(true);
+            TelaEscolheSquad te = new TelaEscolheSquad(idGerente, nomeGerente);
+            te.setVisible(true);
             dispose();
 
         }
@@ -273,7 +273,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro do Sql \n" + e, "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao tentar logar!", "Erro", JOptionPane.ERROR_MESSAGE);
             GerarLog.escreverLog("Erro ao acessar o banco de dados: " + e.getMessage(), "A", 0);
         }
 

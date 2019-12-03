@@ -26,18 +26,24 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class TelaMonitoramento extends javax.swing.JFrame {
 
     ConnectURL dadosConexao = new ConnectURL();
-    DadosSquads dadosSquads = new DadosSquads(1);
     JdbcTemplate jdbcTemplate = new JdbcTemplate(dadosConexao.getDataSource());
     private Integer idSquad = 0;
+    private final Integer idGerente; 
     private final String nomeGerente;
+    private final String apelidoSquad;
 
-    public TelaMonitoramento(String nomeGerente) {
+    public TelaMonitoramento(String apelidoSquad, String nomeGerente, Integer idGerente) {
         initComponents();
         
+        this.idGerente = idGerente;
         this.nomeGerente = nomeGerente;
         
-        DadosSquads dadosSquads = new DadosSquads(1);
+        DadosSquads dadosSquads = new DadosSquads(apelidoSquad);
+        
+        this.apelidoSquad = dadosSquads.getApelidoSquad();
+        this.idSquad = dadosSquads.getIdSquad();
 
+        lbNomeSquad.setText(dadosSquads.getApelidoSquad());
         lbUsuario.setText(nomeGerente);
         lbArea.setText(dadosSquads.getAreaSquad());
 
@@ -58,11 +64,11 @@ public class TelaMonitoramento extends javax.swing.JFrame {
 
     public void buscaFuncionarios() {
 
-        String stringSql = "select * from tblFuncionario where fkSquad = ?";
+        String stringSql = "select f.* from tblFuncionario f " +
+                            "INNER JOIN tblSquad S ON S.idSquad = f.fkSquad " +
+                            "WHERE S.idSquad = ?";
 
         List<DadosFuncionarios> funcionarios = new ArrayList<>();
-
-        this.idSquad = 1;
 
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(stringSql, this.idSquad); //idSquad virá do site
 
@@ -234,13 +240,14 @@ public class TelaMonitoramento extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lbNomeSquad = new javax.swing.JLabel();
+        lbNome = new javax.swing.JLabel();
         lbUsuario = new javax.swing.JLabel();
         lbSair = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jLabel2 = new javax.swing.JLabel();
         lbArea = new javax.swing.JLabel();
+        lbNomeSquad = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -259,16 +266,16 @@ public class TelaMonitoramento extends javax.swing.JFrame {
 
         jPanel1.setBackground(java.awt.SystemColor.activeCaption);
 
-        lbNomeSquad.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        lbNomeSquad.setForeground(new java.awt.Color(255, 255, 255));
-        lbNomeSquad.setText("Squad Alfa");
+        lbNome.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lbNome.setForeground(new java.awt.Color(255, 255, 255));
+        lbNome.setText("Squad:");
 
         lbUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbUsuario.setText("Eduardo Menezes,");
 
         lbSair.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbSair.setForeground(new java.awt.Color(255, 255, 255));
-        lbSair.setText("Sair");
+        lbSair.setText("Voltar");
         lbSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbSairMouseClicked(evt);
@@ -282,6 +289,10 @@ public class TelaMonitoramento extends javax.swing.JFrame {
         jLabel2.setText("Área: ");
 
         lbArea.setForeground(new java.awt.Color(255, 255, 255));
+
+        lbNomeSquad.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lbNomeSquad.setForeground(new java.awt.Color(255, 255, 255));
+        lbNomeSquad.setText("...");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -303,12 +314,15 @@ public class TelaMonitoramento extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(239, 239, 239)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbNomeSquad)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbNomeSquad, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbArea, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +331,9 @@ public class TelaMonitoramento extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbNomeSquad)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lbNome)
+                                .addComponent(lbNomeSquad))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -331,7 +347,7 @@ public class TelaMonitoramento extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(lbArea, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -353,9 +369,9 @@ public class TelaMonitoramento extends javax.swing.JFrame {
         
         GerarLog.escreverLog("Tela de monitoramento do squad do gerente " + nomeGerente + " foi fechada", "A", 0);
         
+        TelaEscolheSquad escolhe = new TelaEscolheSquad(this.idGerente, this.nomeGerente);
+        escolhe.setVisible(true);
         dispose();
-        TelaLogin inicio = new TelaLogin();
-        inicio.setVisible(true);
     }//GEN-LAST:event_lbSairMouseClicked
 
     /**
@@ -391,7 +407,7 @@ public class TelaMonitoramento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaMonitoramento("").setVisible(true);
+                new TelaMonitoramento("", "", 0).setVisible(true);
 
             }
         });
@@ -406,6 +422,7 @@ public class TelaMonitoramento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lbArea;
+    private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbNomeSquad;
     private javax.swing.JLabel lbSair;
     private javax.swing.JLabel lbUsuario;
