@@ -21,7 +21,7 @@ public class OshiDados implements Job{
 
 
     public void execute(JobExecutionContext args0) throws JobExecutionException {
-        Integer idMaquina = 1004;
+        Integer idMaquina = 1009;
         DadosCPU dCpu = new DadosCPU(idMaquina);
         DadosRAM dRam = new DadosRAM(idMaquina);
         DadosHD dHd = new DadosHD(idMaquina);

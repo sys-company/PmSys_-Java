@@ -219,11 +219,11 @@ public class TelaLogin extends javax.swing.JFrame {
             this.idGerente = Integer.parseInt(row.get("idFuncionario").toString());
             this.nomeGerente = row.get("nomeFuncionario").toString();
 
-            TelaEscolheSquad te = new TelaEscolheSquad(idGerente, nomeGerente);
-            te.setVisible(true);
-            dispose();
-
         }
+        
+        TelaEscolheSquad te = new TelaEscolheSquad(idGerente, nomeGerente);
+        te.setVisible(true);
+        dispose();
     }
 
     private void btEntrarSysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarSysActionPerformed

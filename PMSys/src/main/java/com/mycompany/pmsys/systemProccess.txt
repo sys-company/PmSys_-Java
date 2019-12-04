@@ -9,3 +9,5 @@ Registry
 conhost
 StartMenuExperienceHost
 java
+netbeans64
+javaw

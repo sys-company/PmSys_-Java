@@ -3,6 +3,7 @@ com\mycompany\pmsys\TelaLogin$6.class
 com\mycompany\pmsys\oshi\DadosCPU.class
 com\mycompany\pmsys\TelaSenha.class
 com\mycompany\pmsys\Email$1.class
+com\mycompany\pmsys\TelaEscolheSquad$4.class
 com\mycompany\pmsys\TelaSenha$1.class
 com\mycompany\pmsys\DadosHD.class
 com\mycompany\pmsys\oshi\Notificacao.class
@@ -19,6 +20,7 @@ log\GerarLog.class
 com\mycompany\pmsys\TelaMensagem$2.class
 com\mycompany\pmsys\TelaMonitoramento$1.class
 com\mycompany\pmsys\DadosProcessos.class
+com\mycompany\pmsys\TelaEscolheSquad$3.class
 com\mycompany\pmsys\TelaMonitoramento$4.class
 com\mycompany\pmsys\oshi\Executer.class
 com\mycompany\pmsys\ConnectURL.class
@@ -35,7 +37,9 @@ com\mycompany\pmsys\TelaIndividual$4.class
 com\mycompany\pmsys\TelaMonitoramento$5.class
 com\mycompany\pmsys\TelaMonitoramento.class
 com\mycompany\pmsys\TelaLogin$8.class
+com\mycompany\pmsys\TelaEscolheSquad$2.class
 com\mycompany\pmsys\TelaLogin$1.class
+com\mycompany\pmsys\TelaEscolheSquad.class
 com\mycompany\pmsys\TelaMensagem.class
 com\mycompany\pmsys\TeamViewer.class
 com\mycompany\pmsys\oshi\OshiDados.class
@@ -44,5 +48,6 @@ com\mycompany\pmsys\TelaLogin$5.class
 com\mycompany\pmsys\oshi\DadosRAM.class
 com\mycompany\pmsys\TelaSenha$2.class
 com\mycompany\pmsys\TelaMonitoramento$3.class
+com\mycompany\pmsys\TelaEscolheSquad$1.class
 com\mycompany\pmsys\DadosCPU.class
 com\mycompany\pmsys\TelaLogin$2.class

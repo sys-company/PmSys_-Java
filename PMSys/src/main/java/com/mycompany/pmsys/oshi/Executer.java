@@ -25,7 +25,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class Executer {
 
-    private static int idFuncionario = 1004;
+    private static int idFuncionario = 1035;
     private static int lastID;
 
     public static void main(String[] args) throws Exception {

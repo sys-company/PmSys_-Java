@@ -51,7 +51,6 @@ public class DadosProcessos {
         for(int i = 0; i < procs.size(); i++){
             OSProcess p = procs.get(i);
             
-            
             if(this.contador > 1){
                 break;
             }else{
