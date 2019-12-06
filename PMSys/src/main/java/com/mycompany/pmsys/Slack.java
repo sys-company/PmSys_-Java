@@ -7,8 +7,11 @@ package com.mycompany.pmsys;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import javax.swing.JOptionPane;
 import log.GerarLog;
 
@@ -19,21 +22,24 @@ import log.GerarLog;
 public class Slack {
     
     public Boolean enviarMensagem(String mensagem, String identificador, String colaborador) {
+        System.out.println(mensagem);
         if (mensagem.isBlank() || identificador.isBlank()) return false;
         try {
             URL url = new URL("https://hooks.slack.com/services/TMNE3H26A/"
                     + "BNSF52HCL/XaTtm8TD5p032D2AehtR1WAr");
             HttpURLConnection connection = 
                     (HttpURLConnection) url.openConnection();
+            
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type","application/json");
             
             connection.setDoOutput(true);
-            DataOutputStream post = new DataOutputStream(connection.getOutputStream());
-            post.writeBytes(String.format(
+            Writer post = new OutputStreamWriter(connection.getOutputStream(), StandardCharsets.UTF_8);
+            post.write(String.format(
                     "{'text':'<@%s>: %s'}",
                     identificador, mensagem
             ));
+            
             post.flush();
             post.close();
             
